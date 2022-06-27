@@ -1,5 +1,3 @@
-package WorkAmaury;
-
 import java.util.LinkedList;
 
 public class Lru {
