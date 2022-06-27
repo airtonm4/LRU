@@ -1,12 +1,16 @@
 
-public class Teste {
+public class App {
     public static void main(String[] args) throws Exception {
         Integer capacity = 10;
-        Data file = new Data(capacity);
+        
+        Data file = new Data();
+        Lru lruObj = new Lru();
+
         file.getPagesContent();
         file.getQuantity();
 
-        // Lru lruObj = new Lru(capacity);
+        lruObj.get(10);
+
 
     }
 
