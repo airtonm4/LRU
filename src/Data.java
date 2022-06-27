@@ -4,8 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
-import javax.naming.InterruptedNamingException;
-
 public class Data {
     private FileWriter Obj;
     private String fileName = "src/pages.txt";
@@ -34,7 +32,7 @@ public class Data {
         Obj.close();
     }
 
-    public String[] getPagesContent() {
+    public Integer[] getPagesContent() {
         BufferedReader bufferedReader = null;
         try {
             FileReader fileReader = new FileReader(fileName);
@@ -42,12 +40,10 @@ public class Data {
             bufferedReader = new BufferedReader(fileReader);
             // Pulando a primeira linha.
             bufferedReader.readLine();
-            String[] line = new String[50];
+            Integer[] line = new Integer[50];
 
             for (int i = 0; i < line.length; i++) {
-                line[i] = bufferedReader.readLine();
-
-                System.out.println(line[i]);
+                line[i] = Integer.parseInt(bufferedReader.readLine());
             }
 
             bufferedReader.close();
@@ -66,11 +62,12 @@ public class Data {
         try {
             FileReader fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
-            // Pegadno a primeira linha
+
+            // Pegando a primeira linha
             Integer quantity = Integer.parseInt(bufferedReader.readLine());
 
-            System.out.println(quantity);
-
+            fileReader.close();
+            bufferedReader.close();
             return quantity;
         } catch (Exception e) {
             System.out.println("[ERROR] " + e);
