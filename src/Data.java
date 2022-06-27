@@ -24,7 +24,7 @@ public class Data {
             bufferedReader = new BufferedReader(fileReader);
             // Pulando a primeira linha.
             bufferedReader.readLine();
-            String[] lineString = new String[29];
+            String[] lineString = new String[30];
             
             for (int i = 0; i < lineString.length; i++) {
                 lineString[i] = bufferedReader.readLine();

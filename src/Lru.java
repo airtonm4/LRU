@@ -20,16 +20,13 @@ public class Lru {
     }
 
     LinkedListNode get(Integer key) {
-        memory.add(10);
-        memoryValues.addLast(new LinkedListNode(10, 26));
         if (!memory.contains(key)) {
-            System.out.println("null");
             return null;
         }
         ListIterator<LinkedListNode> iterator = memoryValues.listIterator(0);
         while (iterator.hasNext()) {
             LinkedListNode node = iterator.next();
-            if(key == node.key){
+            if (key == node.key) {
                 return node;
             }
         }
@@ -37,6 +34,34 @@ public class Lru {
     }
 
     void set(Integer key, Integer value) {
-        LinkedListNode node;
+        LinkedListNode node = get(key);
+
+        if (node == null) {
+            evict();
+            node = new LinkedListNode(key, value);
+            memoryValues.addLast(node);
+            memory.add(key);
+        } else {
+            memoryValues.remove(node);
+            memoryValues.addLast(node);
+        }
+    }
+
+    void evict() {
+        if (memoryValues.size() >= this.capacity) {
+            LinkedListNode node = memoryValues.remove();
+            memory.remove(node.key);
+        }
+    }
+
+    String printMemory() {
+        ListIterator<LinkedListNode> iterator = memoryValues.listIterator(0);
+        String paper = "";
+        while (iterator.hasNext()) {
+            paper += iterator.next().key + ":" + iterator.next().value + ", ";
+        }
+
+        System.out.println(paper);
+        return paper;
     }
 }
