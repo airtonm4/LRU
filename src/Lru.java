@@ -11,9 +11,11 @@ public class Lru {
     private int capacity;
     private Data file;
 
+    private int pageFault = 0;
+
     public Lru() throws IOException {
         file = new Data();
-        this.capacity = file.getQuantity();
+        this.capacity = file.getCapacity();
 
         memoryValues = new LinkedList<LinkedListNode>();
         memory = new HashSet<Integer>(capacity);
@@ -41,6 +43,7 @@ public class Lru {
             node = new LinkedListNode(key, value);
             memoryValues.addLast(node);
             memory.add(key);
+            this.pageFault++;
         } else {
             memoryValues.remove(node);
             memoryValues.addLast(node);
@@ -52,6 +55,10 @@ public class Lru {
             LinkedListNode node = memoryValues.remove();
             memory.remove(node.key);
         }
+    }
+
+    public int getPageFault() {
+        return pageFault;
     }
 
     String printMemory() {

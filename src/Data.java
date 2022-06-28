@@ -1,19 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 public class Data {
     private String fileName = "src/pages.txt";
-    FileReader fileReader;
 
-    Data() throws IOException {
-        try {
-            fileReader = new FileReader(fileName);
-
-        } catch (IOException e) {
-            System.out.println("[ERROR] " + e);
-            e.printStackTrace();
-        }
+    Data() {
     }
 
     public String[] getPagesContent() {
@@ -25,10 +16,10 @@ public class Data {
             // Pulando a primeira linha.
             bufferedReader.readLine();
             String[] lineString = new String[30];
-            
+
             for (int i = 0; i < lineString.length; i++) {
                 lineString[i] = bufferedReader.readLine();
-                // System.out.println(lineString[i]);
+                System.out.println(lineString[i]);
             }
 
             bufferedReader.close();
@@ -42,7 +33,7 @@ public class Data {
         }
     }
 
-    public Integer getQuantity() {
+    public Integer getCapacity() {
         BufferedReader bufferedReader = null;
         try {
             FileReader fileReader = new FileReader(fileName);
