@@ -19,7 +19,7 @@ public class Data {
 
             for (int i = 0; i < lineString.length; i++) {
                 lineString[i] = bufferedReader.readLine();
-                System.out.println(lineString[i]);
+                // System.out.println(lineString[i]);
             }
 
             bufferedReader.close();
