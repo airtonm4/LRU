@@ -1,19 +1,36 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * Classe responsável pela a leitura de dados do nosso arquivo txt.
  */
 public class Data {
     /**
+     * Atributo responsável por conter a quantidade de linhas do arquivo txt.
+     */
+    private Integer lines = 0;
+    /**
      * Atributo que referência para o arquivo txt.
      */
     private String fileName = "src/pages.txt";
 
-    Data() {
+    Data() throws FileNotFoundException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        try {
+            while (bufferedReader.readLine() != null) {
+                this.lines++;
+            }
+        } catch (IOException e) {
+            System.out.println("[ERROR] " + e);
+            e.printStackTrace();
+        }
     }
 
     /**
      * Método para pegar as linhas de referência do arquivo txt.
+     * 
      * @return String[ ] Array com as linhas de referência.
      */
     public String[] getPagesContent() {
@@ -27,7 +44,7 @@ public class Data {
             /**
              * Array armazenando as linhas.
              */
-            String[] lineString = new String[30];
+            String[] lineString = new String[this.lines - 1];
 
             /**
              * Loop atribuindo valores do arquivo txt para o array.
@@ -49,7 +66,9 @@ public class Data {
     }
 
     /**
-     * Método para pegar a capacidade especificada na primeira linha do nosso arquivo txt.
+     * Método para pegar a capacidade, especificada na primeira linha do nosso
+     * arquivo txt.
+     * 
      * @return Integer
      */
     public Integer getCapacity() {
@@ -72,5 +91,14 @@ public class Data {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Método para buscar o valor do atributo lines.
+     * 
+     * @return Integer
+     */
+    public Integer getLines() {
+        return lines;
     }
 }

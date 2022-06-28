@@ -26,7 +26,7 @@ public class App {
         /**
          * Matriz responsável para armazenar os dados das linhas de referência do arquivo txt.
          */
-        String[][] auxArr = new String[30][2];
+        String[][] auxArr = new String[file.getLines()-1][2];
 
         System.out.println("**************************************");
         System.out.println("            Algoritmo LRU");
